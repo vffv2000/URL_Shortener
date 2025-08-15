@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  web:
+    build: .
+    container_name: url_shortener_fastapi
+    ports:
+      - "8000:8000"
+    volumes:
+      - shortener_data:/data
+    env_file:
+      - .env
+    restart: always
+
+volumes:
+  shortener_data:
