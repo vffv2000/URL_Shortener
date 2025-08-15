@@ -13,12 +13,29 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
 def init_db() -> None:
+    """
+    Initialize the database by creating all tables defined in the models.
+    """
     Base.metadata.create_all(bind=engine)
 
 
 def get_db() -> Generator[Session, None, None]:
+    """
+    Dependency function for FastAPI to provide a database session.
+
+    Yields:
+        Session: SQLAlchemy session object.
+
+    Ensures the session is closed after use.
+    """
     db = SessionLocal()
     try:
         yield db
     finally:
         db.close()
+
+
+
+
+
+

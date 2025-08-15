@@ -6,6 +6,17 @@ Base = declarative_base()
 
 
 class ShortURL(Base):
+    """
+    SQLAlchemy model representing a shortened URL record.
+
+    Attributes:
+        id (int): Primary key of the record.
+        original_url (str): The original full URL.
+        code (str): Unique short code for the URL.
+        clicks (int): Number of times the short URL has been accessed.
+        created_at (datetime): Timestamp when the record was created.
+    """
+
     __tablename__ = "short_urls"
 
     id = Column(Integer, primary_key=True, index=True)
